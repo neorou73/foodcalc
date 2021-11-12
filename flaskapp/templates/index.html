@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block body %}
+   <div>
+     <p>Good Day. You can search by starting letter:</p>
+     <p>
+       | <a href="/list/A">A</a> |
+       | <a href="/list/B">B</a> |
+       | <a href="/list/C">C</a> |
+       | <a href="/list/D">D</a> |
+       | <a href="/list/E">E</a> |
+       | <a href="/list/F">F</a> |
+       | <a href="/list/G">G</a> |
+       | <a href="/list/H">H</a> |
+       | <a href="/list/I">I</a> |
+       | <a href="/list/J">J</a> |
+       | <a href="/list/K">K</a> |
+       | <a href="/list/L">L</a> |
+       | <a href="/list/M">M</a> |
+    </p>
+    <p>
+       | <a href="/list/N">N</a> |
+       | <a href="/list/O">O</a> |
+       | <a href="/list/P">P</a> |
+       | <a href="/list/Q">Q</a> |
+       | <a href="/list/R">R</a> |
+       | <a href="/list/S">S</a> |
+       | <a href="/list/T">T</a> |
+       | <a href="/list/U">U</a> |
+       | <a href="/list/V">V</a> |
+       | <a href="/list/W">W</a> |
+       | <a href="/list/X">X</a> |
+       | <a href="/list/Y">Y</a> |
+       | <a href="/list/Z">Z</a> |
+     </p>
+   </div>
+
+   <div>
+    <form method='post' action='/search'>
+      <p><label for='searchString'>search string:</label>
+         <input type='text' name='searchString' value='nuts' size='25' maxlength='25'/>
+         <input type='submit' value='search'/></p>
+    </form>
+  </div>
+
+   <ul>
+    {% if itemsList %}
+      {% for item in itemsList %}
+        <li>{{item.Long_Desc}} - <a href="/details/{{item.NDB_No}}">{{item.NDB_No}}</a></li>
+      {% endfor %}
+    {% endif %}
+    {% if details %}
+      <table class="details">
+        <tbody>
+        {% for row in details %}
+          <tr>
+            <th>{{row.title}}:</th>
+            <td>{{row.value}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+    {% if nutrdata %}
+      <table class="nutrients">
+        <tbody>
+          <tr>
+            {% for key in nutrdata[0].keys() %}
+            <th>{{key}}</th>
+            {% endfor %}
+          </tr>
+
+          {% for nd in nutrdata %}
+          <tr>
+          {% for key in nd.keys() %}
+            <td>{{nd[key]}}</td>
+          {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+   <ul>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+body {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+}
+div.page {
+  margin-left: 10px;
+  border-top: solid 0.1em #034;
+}
+ul.navigation {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+}
+ul.navigation li {
+	display: inline;
+  border: solid 0.01em #888;
+  background-color: #eee;
+  padding: 10px;
+}
+a {
+  font-weight: bold;
+  text-decoration: none;
+  font-style: normal;
+}
+a:hover {
+  font-weight: bold;
+  text-decoration: none;
+  font-style: italic;
+  color: #a00;
+}
+table {
+  width: 80%;
+}
+table.details tbody tr th, table.details tbody tr td, table.nutrients tbody tr th, table.nutrients tbody tr td {
+  border: solid 0.1em #444;
+}
+table.details tbody tr td {
+  width: 75%;
+  text-align: left;
+}
+table.details tbody tr th {
+  width: 25%;
+  text-align: right;
+}
+table.details tbody tr td, table.nutrients tbody tr td {
+  background-color: #fff;
+}
+table.details tbody tr th, table.nutrients tbody tr th {
+  background-color: #ddd;
+}

@@ -1,0 +1,27 @@
+nginx: stable 1.21.1 (bottled), HEAD
+HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+https://nginx.org/
+Not installed
+From: https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/nginx.rb
+License: BSD-2-Clause
+==> Dependencies
+Required: openssl@1.1, pcre
+==> Options
+--HEAD
+	Install HEAD version
+==> Caveats
+Docroot is: /usr/local/var/www
+
+The default port has been set in /usr/local/etc/nginx/nginx.conf to 8080 so that
+nginx can run without sudo.
+
+nginx will load all files in /usr/local/etc/nginx/servers/.
+
+To have launchd start nginx now and restart at login:
+  brew services start nginx
+Or, if you don't want/need a background service you can just run:
+  nginx
+==> Analytics
+install: 31,096 (30 days), 110,280 (90 days), 498,376 (365 days)
+install-on-request: 31,042 (30 days), 110,027 (90 days), 495,186 (365 days)
+build-error: 0 (30 days)

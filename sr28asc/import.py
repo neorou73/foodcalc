@@ -66,6 +66,20 @@ def testDatabase():
         print (database[table_name]['table_keys'])
         print (database[table_name]['source_file'])
 
+def getTableNames():
+    names = []
+    for tableName in database:
+        names.append(tableName)
+    return names
+
+def getSourceFileName(tableName):
+    return database[tableName]["source_file"]
+
+def getTableKeys(tableName):
+    return database[tableName]["table_keys"]
+
+
+
 def readFile(tableName):
     tableData = []
     fileName = database[tableName]["source_file"]
@@ -74,7 +88,7 @@ def readFile(tableName):
     with open(fileName, encoding="utf-8", errors='ignore') as f:
         #usdasSrxReader = csv.reader(csvFile, delimiter='^', quotechar='~') # ~^~
         contents = f.readlines()
-        print(len(contents))
+        #print(len(contents))
         for row in contents:
             # print(row)
             rsrow = row.rstrip("\n")
@@ -83,12 +97,17 @@ def readFile(tableName):
             #print(rowData)
             tableDataRow = {}
             for count, value in enumerate(rowData):
-                print('"' + tableKeys[count] + '": ', '"' + value.strip("~") + '"')
+                #print('"' + tableKeys[count] + '": ', '"' + value.strip("~") + '"')
                 tableDataRow[tableKeys[count]] = value.strip("~")
             tableData.append(tableDataRow)
-
-    print(["table " + tableName + " has ", len(tableData), " rows."])
+    return tableData
+    #print(["table " + tableName + " has ", len(tableData), " rows."])
 
 if __name__ == "__main__":
-    testDatabase()
-    readFile("footnote")
+    #testDatabase()
+    for tableName in getTableNames():
+        tableKeys = getTableKeys(tableName)
+        sourceFileName = getSourceFileName(tableName)
+        tableData = readFile(tableName)
+        print([tableName, tableKeys, sourceFileName])
+        

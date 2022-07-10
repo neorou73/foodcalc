@@ -66,12 +66,29 @@ def testDatabase():
         print (database[table_name]['table_keys'])
         print (database[table_name]['source_file'])
 
-def readFile(fileName):
-    import csv
-    with open(fileName) as csvFile:
-        usdasSrxReader = csv.reader(csvFile, delimiter='^', quotechar='~') # ~^~
-        for row in usdasSrxReader:
-            print(', '.join(row))
+def readFile(tableName):
+    tableData = []
+    fileName = database[tableName]["source_file"]
+    tableKeys = database[tableName]["table_keys"]
+    #import csv
+    with open(fileName, encoding="utf-8", errors='ignore') as f:
+        #usdasSrxReader = csv.reader(csvFile, delimiter='^', quotechar='~') # ~^~
+        contents = f.readlines()
+        print(len(contents))
+        for row in contents:
+            # print(row)
+            rsrow = row.rstrip("\n")
+            rowData = rsrow.split("^")
+            #print(tableKeys)
+            #print(rowData)
+            tableDataRow = {}
+            for count, value in enumerate(rowData):
+                print('"' + tableKeys[count] + '": ', '"' + value.strip("~") + '"')
+                tableDataRow[tableKeys[count]] = value.strip("~")
+            tableData.append(tableDataRow)
 
-testDatabase()
-readFile(database["footnote"]["source_file"])
+    print(["table " + tableName + " has ", len(tableData), " rows."])
+
+if __name__ == "__main__":
+    testDatabase()
+    readFile("footnote")

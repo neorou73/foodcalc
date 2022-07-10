@@ -61,15 +61,15 @@ class foodcalc(object):
         self.dbname = 'foodcalc.sdb'
 
     def print_keys(self):  
-        print "current object tables available: "
+        print ("current object tables available: ")
         for t in self.tables.keys():
             # print t, ": ", fc.tables[t]
-            print '{0:>2}{2:<15}{0}{1}{0:>2}'.format('|',self.tables[t],t)
-        print "\n"
-        print "current object table keys per table available: "
+            print ('{0:>2}{2:<15}{0}{1}{0:>2}'.format('|',self.tables[t],t))
+        print ("\n")
+        print ("current object table keys per table available: ")
         for tk in self.table_keys.keys():
             # print tk, ": ", fc.table_keys[tk]     
-            print '{0:>2}{2:<25}{0}{1}{0:>2}'.format('|',self.table_keys[tk],tk)
+            print ('{0:>2}{2:<25}{0}{1}{0:>2}'.format('|',self.table_keys[tk],tk))
 
 
     def createDatabaseSchemaSource(self):
@@ -96,7 +96,7 @@ class foodcalc(object):
             conn.commit()
             conn.close() # close the connection
         except sqlite3.Error as e:
-            print "An error occurred: ". e.args[0]
+            print ("An error occurred: ". e.args[0])
 
 
     def writeDatabaseSchemaInserts(self):
@@ -121,7 +121,7 @@ class foodcalc(object):
                 ins = ins + ")"
                 with open(sqlToWriteTo, 'w') as sqlFile:
                     sqlFile.write(ins)
-                    print 'done writing to ' + sqlToWriteTo
+                    print ('done writing to ' + sqlToWriteTo)
                     sqlFile.close()
                 srcFile.close()
                     
@@ -129,9 +129,9 @@ class foodcalc(object):
 if __name__ == "__main__":
     fc = foodcalc()
     fc.print_keys()  
-    print "currently reading from " + __file__
+    print ("currently reading from " + __file__)
     import os
     wd =  os.path.abspath(__file__).replace(__file__, "")
-    print "currently running from directory " + wd
+    print ("currently running from directory " + wd)
     fc.createDatabaseSchemaSource()
     fc.writeDatabaseSchemaInserts()
